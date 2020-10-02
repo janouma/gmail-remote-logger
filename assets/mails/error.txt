@@ -1,0 +1,3 @@
+The following error occured on ${app}:
+
+${log}

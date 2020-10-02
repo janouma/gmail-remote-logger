@@ -1,0 +1,14 @@
+<mjml>
+  <mj-body width="100%" background-color="#ebebeb">
+    <mj-section>
+      <mj-column>
+        <mj-text font-size="20px">The following error occured on ${app}:</mj-text>
+        <mj-text>
+          <mj-raw>
+            <code style="white-space: pre-wrap;">${log}</code>
+          </mj-raw>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

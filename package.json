@@ -1,0 +1,63 @@
+{
+  "name": "heimdall-remote-logger",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Service that receives logs via notifications and sends it via email",
+  "main": "index.js",
+  "author": "janouma",
+  "engines": {
+    "node": "^12.14.1",
+    "npm": "^6.13.7"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "pre-push": [
+    "test"
+  ],
+  "eslintConfig": {
+    "extends": [
+      "standard"
+    ]
+  },
+  "config": {
+    "path": "./local.config.js"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "setupFiles": [
+      "<rootDir>/test/setup.js"
+    ],
+    "clearMocks": true
+  },
+  "scripts": {
+    "lint": "eslint --no-error-on-unmatched-pattern \"index.js\" \"lib/**/*.js\" \"utils/**/*.js\" \"test/**/*.js\"",
+    "start:dev": "NODE_ENV=development npm start",
+    "start": "node --experimental-modules $npm_package_main",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "babel-jest": "^26.3.0",
+    "babel-plugin-transform-import-meta": "^1.0.1",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "jest": "^26.4.2",
+    "pre-commit": "^1.2.2",
+    "pre-push": "^0.1.1",
+    "standard": "^14.3.3"
+  },
+  "dependencies": {
+    "@heimdall/utils": "^1.2.1",
+    "es6-template-strings": "^2.0.1",
+    "gmail-send": "^1.8.10",
+    "lodash.mergewith": "^4.6.2",
+    "loglevel": "^1.6.7",
+    "mjml": "^4.2.0",
+    "pusher-js": "^7.0.0"
+  }
+}
