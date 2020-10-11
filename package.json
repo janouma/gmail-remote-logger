@@ -1,5 +1,5 @@
 {
-  "name": "heimdall-remote-logger",
+  "name": "gmail-remote-logger",
   "type": "module",
   "version": "1.0.0",
   "description": "Service that receives logs via notifications and sends it via email",
