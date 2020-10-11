@@ -262,4 +262,23 @@ describe('lib/server', () => {
     expect(mockResponse.statusCode).toBe(500)
     expect(mockResponse.end).toHaveBeenCalledWith('error occured while sending log message:\n' + error.message)
   })
+
+  it('should reject missing request body (log message)', async () => {
+    serve(env)
+
+    const { calls: [[sendLog]] } = createServer.mock
+
+    const mockRequest = {
+      method: 'POST',
+      headers: { origin: 'https://localhost:3003' }
+    }
+
+    sendLog(mockRequest, mockResponse)
+
+    // wait for readBody() to reject
+    await nextTick()
+
+    expect(mockResponse.statusCode).toBe(400)
+    expect(mockResponse.end).toHaveBeenCalledWith('Bad request: body (log message) is empty')
+  })
 })
