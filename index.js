@@ -1,21 +1,32 @@
 import logLevel from 'loglevel'
-import loadEnv from './env.js'
-import watch from './lib/watcher.js'
+import serve from './lib/server.js'
 
-async function start () {
-  const env = await loadEnv()
+const {
+  PORT,
+  MAIL_API_KEY,
+  MAIL_FROM,
+  MAIL_TO,
+  NODE_ENV,
+  ALLOW_ORIGIN,
+  LOG_LEVEL
+} = process.env
 
-  logLevel.setLevel(env.logLevel)
-
-  const log = logLevel.getLogger('index')
-
-  if (log.getLevel() === log.levels.TRACE) {
-    for (const key in env) {
-      console.debug(key, ':', env[key])
-    }
-  }
-
-  watch(env)
+const env = {
+  port: PORT,
+  mail: {
+    key: MAIL_API_KEY,
+    from: MAIL_FROM,
+    to: MAIL_TO
+  },
+  allowOrigin: NODE_ENV === 'development' ? '*' : ALLOW_ORIGIN
 }
 
-start()
+logLevel.setLevel(LOG_LEVEL)
+
+if (NODE_ENV === 'development') {
+  for (const key in env) {
+    console.debug(key, ':', env[key])
+  }
+}
+
+serve(env)

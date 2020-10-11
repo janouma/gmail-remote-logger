@@ -21,7 +21,11 @@
     ]
   },
   "config": {
-    "path": "./local.config.js"
+    "port": 3010,
+    "mailApiKey": "MAILING_SERVICE_API_KEY",
+    "from": "no-reply@heimdallinsight.com",
+    "to": "admin@eimdallinsight.com",
+    "logLevel": "info"
   },
   "jest": {
     "transform": {
@@ -34,7 +38,7 @@
   },
   "scripts": {
     "lint": "eslint --no-error-on-unmatched-pattern \"index.js\" \"lib/**/*.js\" \"utils/**/*.js\" \"test/**/*.js\"",
-    "start:dev": "NODE_ENV=development npm start",
+    "start:dev": "NODE_ENV=development PORT=$npm_package_config_port MAIL_API_KEY=$npm_package_config_mailApiKey MAIL_FROM=$npm_package_config_from MAIL_TO=$npm_package_config_to LOG_LEVEL=$npm_package_config_logLevel npm start",
     "start": "node --experimental-modules $npm_package_main",
     "test": "jest"
   },
